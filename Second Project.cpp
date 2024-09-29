@@ -2,12 +2,12 @@
       Immanuel Braxton
       9/25/2024
       Project 1. Calculator
-      Description: Write a program that mimics a calculator. The program should take as input two
+      Description: This program mimics a calculator. The program takes an input of two
       integers and the operation to be performed. It should then output the numbers, the
-      operator, and the result. For division, if the denominator is zero, output an
-      appropriate message. Limit the supported operations to + - / * and write an error
-      message if the operator is not one of the supported operations. Here is some
-      example output: 3 + 4 = 7, 13 * 5 = 65
+      operator, and the result. For division, if the denominator is zero, an ouput of undefined 
+      will be displayed. It is limited to the supported operations to + - / * and writes an error
+      message if the operator is not one of the supported operations. This program will ask the user if
+	  they want to continue calculations or exit program. The program uses nested if statements.
 
  */
 
