@@ -1,13 +1,13 @@
-/*
+/**
       Immanuel Braxton
       9/25/2024
-      Project 1. Calculator
-      Description: Write a program that mimics a calculator. The program should take as input two
+      Project 2. Calculator
+      Description: This program mimics a calculator. The program takes an input of two
       integers and the operation to be performed. It should then output the numbers, the
-      operator, and the result. For division, if the denominator is zero, output an
-      appropriate message. Limit the supported operations to + - / * and write an error
-      message if the operator is not one of the supported operations. Here is some
-      example output: 3 + 4 = 7, 13 * 5 = 65
+      operator, and the result. For division, if the denominator is zero, an ouput of undefined 
+      will be displayed. It is limited to the supported operations to + - / * and writes an error
+      message if the operator is not one of the supported operations. This program will ask the user if
+	  they want to continue calculations or exit program. The program uses switch statements.
 
  */
 
@@ -21,34 +21,66 @@ using namespace std;
 
 int main()
 {
-    double FirstP; // First Product
-    double SecondP;
-    double Answer;
-    char Operand;
+	char op, choice, N, Y;
+	double num1, num2;
+	choice = 'Y';  // Initialize the choice variable
 
 
-    cout << "This program will calculate two products and a operand of your choosing.\n" << endl;
-    cout << "Please enter first product.\n" << endl;
-    cin >> FirstP;
-    cout << "Please enter operand.\n" << endl;
-    if (Operand != ("+")) || ("-") || ("*") || ("/"))
-    cin >> Operand;
-    
-    cout << "Please enter second product.\n" << endl;
-    cin >> SecondP;
-    
-    Answer = FirstP, Operand, SecondP;
+	while (choice == 'Y') // loop while Y is equal to continue
+	{
 
-    cout << "Your answer is " << Answer << "." << endl;
+
+		cout << "Enter first integer, an operator (+, -, * or /), then last integer, include space between each item:"; // ask for operator, loop while i is equal to 1
+		cin >> num1 >> op >> num2;
+
+		//cout << "Enter two integers, include a space between integers: "; // ask for the two numbers, in while loop
+		//cin >> num1 >> num2;
+
+		switch (op)
+		{
+		case '+':
+			cout << "total: " << num1 << "+" << num2 << "=" << (num1 + num2) << endl;
+			break;
+
+		case '-':
+			cout << "total: " << num1 << "-" << num2 << "=" << (num1 - num2) << endl;
+			break;
+
+		case '*':
+			cout << "total: " << num1 << "*" << num2 << "=" << (num1 * num2) << endl;
+			break;
+
+		case '/':
+			if (num2 != 0)
+			{
+				cout << "total: " << num1 << "/" << num2 << "=" << (num1 / num2) << endl;
+			}
+			else
+			{
+				cout << "total: " << num1 << "/" << num2 << "=" << "Undefined" << endl;
+			}
+			break;
+
+		default:
+			cout << "Invalid operator " << endl;
+		}
+
+		cout << "Would you like to continue operating? Enter 'Y' or 'N' (case sensitive): " << endl;
+		cin >> choice;
+
+		while (choice != 'Y' && choice != 'N')
+		{
+			cout << "Invalid input! Please enter Y to continue or N to stop: " << endl;
+			cin >> choice;
+		}
+		if (choice == 'N')
+		{
+			break; //exit the loop if th user enters 'N'
+		}
+	}
+
+
+
+	return 0;
+
 }
-
-/*
-* talk about program
-* ask for first number
-* ask for operand
-* figure out how to make error message for wrong operand
-* ask for last number
-* 
-* calculate don't for get about the remander in division
-* show final
-*/
