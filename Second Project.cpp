@@ -1,98 +1,90 @@
 /*
-      Immanuel Braxton
-      9/25/2024
-      Project 1. Calculator
-      Description: Write a program that mimics a calculator. The program should take as input two
-      integers and the operation to be performed. It should then output the numbers, the
-      operator, and the result. For division, if the denominator is zero, output an
-      appropriate message. Limit the supported operations to + - / * and write an error
-      message if the operator is not one of the supported operations. Here is some
-      example output: 3 + 4 = 7, 13 * 5 = 65
-
+ * Immanuel Braxton
+ * 3 / 29 / 2024
+ * Project 3.3 two files into one.cpp
+ * This program reads two input files whose lines are ordered by a key data field and merges them into one output file using the same key field.
+ * This program will read each input file until completion and the files have been merged successfully in an outfile.
  */
 
-#include <iostream>
+#include <iostream> 
 
-#include <iomanip>
--
-#include <cmath>
+#include <string>
+
+#include <fstream> //fstream header
 
 using namespace std;
 
 int main()
 {
-	char op, choice, N, Y;
-	double num1, num2;
-	choice = 'Y';  // Initialize the choice variable
+    ifstream TextFile1, TextFile2;
+    ofstream Outfile;
+
+    TextFile1.open("TextFile1.txt"); //open file
+    TextFile2.open("TextFile2.txt"); //open file
+
+    Outfile.open("OutputFile"); //open  Outfile
 
 
-	while (choice == 'Y') // loop while Y is equal to continue
-	{
+    if (!TextFile1 || !TextFile2)
+    {
+        cout << "could not open file" << endl;
+        return 1;
+    }
 
+    string str1, str2;
 
-		cout << "Enter first integer, an operator (+, -, * or /), then last integer, include space between each item:"; // ask for operator, loop while i is equal to 1
-		cin >> num1 >> op >> num2;
-
-		//cout << "Enter two integers, include a space between integers: "; // ask for the two numbers, in while loop
-		//cin >> num1 >> num2;
-
-		if (op == '+')
-		{
-			cout << "total: " << num1 << "+" << num2 << "=" << (num1 + num2) << endl;
-		}
-		else if (op == '-')
-		{
-			cout << "total: " << num1 << "-" << num2 << "=" << (num1 - num2) << endl;
-		}
-		else if (op == '*')
-		{
-			cout << "total: " << num1 << "*" << num2 << "=" << (num1 * num2) << endl;
-		}
-		else if (op == '/')
-		{
-			if (num2 != 0)
-			{
-				cout << "total: " << num1 << "/" << num2 << "=" << (num1 / num2) << endl;
-			}
-			else
-			{
-				cout << "total: " << num1 << "/" << num2 << "=" << "Undefined" << endl;
-			}
-		}
-
-		else
-		{
-			cout << "Invalid operator " << endl;
-		}
-
-
-		cout << "Would you like to continue operating? Enter 'Y' or 'N' (case sensitive): " << endl;
-		cin >> choice;
-
-		while (choice != 'Y' && choice != 'N')
-		{
-			cout << "Invalid input! Please enter Y to continue or N to stop: " << endl;
-			cin >> choice;
-		}
-		if (choice == 'N')
-		{
-			break; //exit the loop if th user enters 'N'
-		}
-	}
+    getline(TextFile1, str1);
+    getline(TextFile2, str2);
 
 
 
-	return 0;
+    while (!TextFile1.eof() && !TextFile2.eof())//if data is there, if eof write remaining lines from file
+    {
+        //cout << str1 << str2 << endl;
 
+        if (str1 < str2) //compare the two strings from the files writing the smaller one
+        {
+            Outfile << str1 << endl;
+            getline(TextFile1, str1);
+
+        }
+        else
+        {
+            Outfile << str2 << endl;
+            getline(TextFile2, str2);
+            //cout << str2 << str1 << endl;
+
+
+        }
+
+
+
+    }
+
+
+    while (!TextFile1.eof())// if file1 is eof write list of file2
+    {
+        Outfile << str1 << endl;
+        getline(TextFile1, str1);
+    }
+
+
+    while (!TextFile2.eof())// if file2 is eof write list of file1
+    {
+        Outfile << str2 << endl;
+        getline(TextFile2, str2);
+
+    }
+
+
+
+
+
+    TextFile1.close(); ////close infile 
+    TextFile2.close(); //close infile 
+
+
+    Outfile.close(); //close outfile  
+
+    return 0;
 }
-
-/*
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-*/
