@@ -2,6 +2,7 @@
  * Immanuel Braxton
  * 10 / 1 / 2024
  * Project 3.3 two files into one.cpp
+ * Description:
  * This program reads two input files whose lines are ordered by a key data field and merges them into one output file using the same key field.
  * This program will read each input file until completion and the files have been merged successfully in an outfile.
  */
